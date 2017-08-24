@@ -67,7 +67,6 @@ def pipe_to(
             return os.path.join(base_path, "{}{}.{}".format(prefix, time, extension))
 
         elif pipe_type == PipeType.BATCH_NUMBER:
-            # TODO JHILL: this doesn't work
             if not os.path.exists(base_path):
                 os.makedirs(base_path)
             
@@ -131,9 +130,9 @@ def pipe_to(
         @wraps(func)
         def wrapper(*args: Tuple, **kwargs: Dict) -> Any:
             if pipe_type == PipeType.FILENAME and prefix != '':
-                raise ValueError("prefix not compatible with PipeType.FILENAME")
+                raise ValueError("'prefix' not compatible with PipeType.FILENAME")
             elif pipe_type != PipeType.FILENAME and append is True:
-                raise ValueError("append only compatible with PipeType.FILENAME")
+                raise ValueError("'append' only compatible with PipeType.FILENAME")
 
             filename = get_pipe_destination(
                 base_path=base_path,
@@ -144,7 +143,11 @@ def pipe_to(
             print('"pipe_to" is writing output of "{}" to {}'.format(func.__name__, filename))
 
             current_stdout = sys.stdout
-            sys.stdout = open(filename, 'w')
+            if append:
+                sys.stdout = open(filename, 'a+')
+            else:
+                sys.stdout = open(filename, 'w+')
+
             return_value = func(*args, **kwargs)
             sys.stdout = current_stdout
 
