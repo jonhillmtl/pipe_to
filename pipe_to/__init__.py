@@ -1,11 +1,11 @@
 from functools import wraps
-from enum import Enum
+from enum import Enum, unique
 import sys
 import datetime
 import os
 from typing import Any, Callable, Dict, Tuple
 
-
+@unique
 class PipeType(Enum):
     DEFAULT = 0
     FILENAME = 1
