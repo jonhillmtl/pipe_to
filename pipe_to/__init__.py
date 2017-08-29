@@ -15,6 +15,8 @@ class PipeType(Enum):
     BATCH_NUMBER = 5
     DAY_HIERARCHY_BATCH_NUMBER = 6
 
+    # TODO JHILL: reorder these
+    # TODO JHILL: add DATE_BATCH_NUMBER
 
 def pipe_to(
     *,

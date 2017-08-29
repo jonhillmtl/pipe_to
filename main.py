@@ -46,6 +46,12 @@ def day_hierarchy_batch_number() -> None:
     print("day_hierarchy_batch_number")
 
 
+class PipeTest(object):
+    @pipe_to(base_path='~/pipe_to_test/', pipe_type=PipeType.DAY_HIERARCHY_BATCH_NUMBER)
+    def tester(self):
+        print("hello")
+
+
 if __name__ == '__main__':
     batch_number()
     datetime()
@@ -69,3 +75,6 @@ if __name__ == '__main__':
         print(e)
         
     day_hierarchy_batch_number()
+    
+    pt = PipeTest()
+    pt.tester()
