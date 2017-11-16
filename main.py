@@ -11,14 +11,14 @@ def datetime() -> None:
     print("datetime")
 
 
-@pipe_to(base_path='~/pipe_to_test/', pipe_type=PipeType.DAY_HIERARCHY_TIME)
-def day_hierarchy_time() -> None:
-    print("day_hierarchy_time")
+@pipe_to(base_path='~/pipe_to_test/', pipe_type=PipeType.DATE_HIERARCHY_TIME)
+def date_hierarchy_time() -> None:
+    print("date_hierarchy_time")
 
 
-@pipe_to(base_path='~/pipe_to_test/', pipe_type=PipeType.DAY_HIERARCHY_TIME_HIERARCHY)
-def day_hierarchy_time_hierarchy() -> None:
-    print("day_hierarchy_time_hieararchy")
+@pipe_to(base_path='~/pipe_to_test/', pipe_type=PipeType.DATE_HIERARCHY_TIME_HIERARCHY_BATCH)
+def date_hierarchy_time_hierarchy_batch() -> None:
+    print("date_hierarchy_time_hierarchy_batch")
 
 
 @pipe_to(base_path='~/pipe_to_test/', pipe_type=PipeType.FILENAME)
@@ -36,27 +36,36 @@ def filename_success() -> None:
     print("filename_success")
 
 
-@pipe_to(base_path='~/pipe_to_test/', pipe_type=PipeType.DAY_HIERARCHY_TIME, append=True)
+@pipe_to(base_path='~/pipe_to_test/', pipe_type=PipeType.DATE_HIERARCHY_TIME, append=True)
 def append_error() -> None:
     print("append_error")
 
 
-@pipe_to(base_path='~/pipe_to_test/', pipe_type=PipeType.DAY_HIERARCHY_BATCH_NUMBER)
-def day_hierarchy_batch_number() -> None:
-    print("day_hierarchy_batch_number")
+@pipe_to(base_path='~/pipe_to_test/test.txt', pipe_type=PipeType.FILENAME, append=True)
+def append_success() -> None:
+    print("append_success")
+
+@pipe_to(base_path='~/pipe_to_test/', pipe_type=PipeType.DATE_HIERARCHY_BATCH_NUMBER)
+def date_hierarchy_batch_number() -> None:
+    print("date_hierarchy_batch_number")
+
+
+@pipe_to(base_path='~/pipe_to_test/', pipe_type=PipeType.DATE_BATCH_NUMBER)
+def date_batch_number() -> None:
+    print("date_batch_number")
 
 
 class PipeTest(object):
-    @pipe_to(base_path='~/pipe_to_test/', pipe_type=PipeType.DAY_HIERARCHY_BATCH_NUMBER)
-    def tester(self):
+    @pipe_to(base_path='~/pipe_to_test/', pipe_type=PipeType.DATE_HIERARCHY_BATCH_NUMBER)
+    def tester(self) -> None:
         print("hello")
 
 
 if __name__ == '__main__':
     batch_number()
     datetime()
-    day_hierarchy_time()
-    day_hierarchy_time_hierarchy()
+    date_hierarchy_time()
+    date_hierarchy_time_hierarchy_batch()
     try:
         filename_error_1()
     except ValueError as e:
@@ -73,8 +82,9 @@ if __name__ == '__main__':
         append_error()
     except ValueError as e:
         print(e)
-        
-    day_hierarchy_batch_number()
-    
+
+    date_hierarchy_batch_number()
+    date_batch_number()
+
     pt = PipeTest()
     pt.tester()
