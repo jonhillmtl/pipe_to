@@ -1,21 +1,11 @@
 # Description
 
-A Python decorator that will display a progress flipper while a function runs.
+Allows you to pipe the output of a function to a file.
 
 # Installation
 
-`pip install git+https://github.com/jonhillmtl/thread-flipper`
+`pip install git+https://github.com/jonhillmtl/pipe_to`
 
 # Usage
 
-```
-from time import sleep
-from thread_flipper import thread_flipper
-
-@thread_flipper()
-def main():
-    sleep(5)
-
-if __name__ == '__main__':
-    main()
-```
+See `main.py` for all possible usages.
